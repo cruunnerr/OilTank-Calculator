@@ -26,14 +26,18 @@ Install node:
 Install MySQL Library:
 
 ```sudo apt-get install python-mysqldb```
+
 ```sudo apt-get install python-mysql.connector```
 
 
 Create direction and install npm dependencies:
 
 ```mkdir tank```
+
 ```cd tank```
+
 ```npm install mysql```
+
 ```npm install promise-ftp```
 
 
@@ -43,7 +47,9 @@ Copy all files to /home/pi/tank
 Test scripts:
 
 ```cd tank```
+
 ```python tank.py```
+
 ```node app.js```
 
 
