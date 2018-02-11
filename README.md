@@ -18,22 +18,22 @@ Dependencies:
 
 Install node:
 
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
+```curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -```
+```sudo apt-get install -y nodejs```
 
 
 Install MySQL Library:
 
-sudo apt-get install python-mysqldb
-sudo apt-get install python-mysql.connector
+```sudo apt-get install python-mysqldb```
+```sudo apt-get install python-mysql.connector```
 
 
 Create direction and install npm dependencies:
 
-mkdir tank
-cd tank
-npm install mysql
-npm install promise-ftp
+```mkdir tank```
+```cd tank```
+```npm install mysql```
+```npm install promise-ftp```
 
 
 
@@ -41,19 +41,21 @@ Copy all files to /home/pi/tank
 
 Test scripts:
 
-cd tank
-python tank.py
-node app.js
+```cd tank```
+```python tank.py```
+```node app.js```
 
 
 
 
 Automatically executing:
 
-sudo nano /etc/crontab
+```sudo nano /etc/crontab```
 
 add these lines:
 
+```
 51 4    * * *   root    /usr/bin/python /home/pi/tank/tank.py
 52 4    * * *   root    /usr/bin/node /home/pi/tank/app.js
+```
 
