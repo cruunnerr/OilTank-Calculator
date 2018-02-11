@@ -19,7 +19,7 @@ ftppassword = "password"
 ftppath = "/web"
 
 sqlhost = "ip.to.the.server"
-sqlport = "3307" // mostly Port 3306 is used, but my Synology is using 3307
+sqlport = "3307" # mostly Port 3306 is used, but my Synology is using 3307
 sqluser = "username"
 sqlpassword = "password"
 sqldb = "Tank"
