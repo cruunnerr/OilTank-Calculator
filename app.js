@@ -3,7 +3,7 @@ var fs = require('fs');
 var PromiseFtp = require('promise-ftp');
 var connection = mysql.createConnection({
   host: 'ip.to.the.server',
-  port: '3307',
+  port: '3307', // mostly port 3306 is used, but my synology is using port 3307
   user: 'username',
   password: 'password',
   database: 'Tank'
