@@ -42,7 +42,7 @@ Dependencies:
 
 
 
-**Copy all files to /home/pi/tank**
+**Copy app.js and tank.py files to /home/pi/tank**
 
 ***Test scripts:***
 
