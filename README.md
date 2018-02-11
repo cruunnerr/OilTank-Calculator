@@ -1,6 +1,6 @@
 # OilTank-Calculator
 
-THIS IS JUST A DOCUMENTATION FOR MYSELF! YOU CAN USE IT, BUT THERE MAY BE MISSING SOME STEPS!
+***THIS IS JUST A DOCUMENTATION FOR MYSELF! YOU CAN USE IT, BUT THERE MAY BE MISSING SOME STEPS!
 
 
 Made for Raspbian!
@@ -16,21 +16,21 @@ Dependencies:
 - MySQL Database with a Databse called "Tank" and a Table called "Volumen". The table includes two columns called "Date" and "Volume". Date is defined as "text" and Volume ist defined as "decimal"
 
 
-Install node:
+***Install node:
 
 ```curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -```
 
 ```sudo apt-get install -y nodejs```
 
 
-Install MySQL Library:
+***Install MySQL Library:
 
 ```sudo apt-get install python-mysqldb```
 
 ```sudo apt-get install python-mysql.connector```
 
 
-Create direction and install npm dependencies:
+***Create direction and install npm dependencies:
 
 ```mkdir tank```
 
@@ -42,9 +42,9 @@ Create direction and install npm dependencies:
 
 
 
-Copy all files to /home/pi/tank
+**Copy all files to /home/pi/tank
 
-Test scripts:
+***Test scripts:
 
 ```cd tank```
 
@@ -55,11 +55,11 @@ Test scripts:
 
 
 
-Automatically executing:
+***Automatically executing:
 
 ```sudo nano /etc/crontab```
 
-add these lines:
+*add these lines:
 
 ```
 51 4    * * *   root    /usr/bin/python /home/pi/tank/tank.py
