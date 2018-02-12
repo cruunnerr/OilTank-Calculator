@@ -174,7 +174,7 @@ def main():
       try:
           connection = mysql.connector.connect(host = sqlhost, port = sqlport, user = sqluser, passwd = sqlpassword, db = sqldb)
       except:
-          print "*** Keine Verbindung zum MySQL-Server !!! ***"
+          print ("*** Keine Verbindung zum MySQL-Server !!! ***")
       else:
           cursor = connection.cursor()
           cursor.execute("INSERT INTO Volumen VALUES (%s,%s)", (Tag,Liter,))
