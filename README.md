@@ -14,6 +14,7 @@ Dependencies:
 - Node
 - MySQL Library
 - MySQL Database with a Databse called "Tank" and a Table called "Volumen". The table includes two columns called "Date" and "Volume". Date is defined as "text" and Volume ist defined as "decimal"
+- MQTT Broker like "ioBroker"
 
 
 ***Install node:***
@@ -28,6 +29,14 @@ Dependencies:
 ```sudo apt-get install python-mysqldb```
 
 ```sudo apt-get install python-mysql.connector```
+
+***Install MQTT Libryry***
+
+```sudo apt-get install python-setuptools```
+
+```sudo easy_install pip```
+
+```pip install paho-mqtt```
 
 
 ***Create direction and install npm dependencies:***
