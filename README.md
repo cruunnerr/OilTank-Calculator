@@ -30,7 +30,7 @@ Dependencies:
 
 ```sudo apt-get install python-mysql.connector```
 
-***Install MQTT Libryry***
+***Install MQTT Library***
 
 ```sudo apt-get install python-setuptools```
 
