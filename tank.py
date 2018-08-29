@@ -9,20 +9,28 @@ import os
 import ftplib
 import mysql
 import mysql.connector
+import paho.mqtt.client as mqtt
 
 GPIO.setwarnings(False)
 
-# define server data
+# define ftp server
 ftpserver = "ip.to.the.server"
 ftpuser = "username"
 ftppassword = "password"
 ftppath = "/web"
 
+# define sql database
 sqlhost = "ip.to.the.server"
 sqlport = "3307" # mostly Port 3306 is used, but my Synology is using 3307
 sqluser = "username"
 sqlpassword = "password"
 sqldb = "Tank"
+
+# define MQTT broker
+broker="ip.to.the.server"
+brokerport="1886" # mostly port 1883
+mqttuser="username"
+mqttpw="password"
 
 # define GPIO pins
 GPIOTrigger = 18
@@ -96,6 +104,9 @@ def main():
       Auslesezeitpunkt = datetime.datetime.fromtimestamp(Zeit).strftime('%d-%m-%Y_%H:%M:%S')
       Tag = datetime.datetime.fromtimestamp(Zeit).strftime('%Y-%m-%d')
       Uhr = datetime.datetime.fromtimestamp(Zeit).strftime('%H:%M:%S')
+      Datum = datetime.datetime.fromtimestamp(Zeit).strftime('%d-%m-%Y')
+
+      time.sleep(2)
 
 	# schreibe Langzeitmessung in *.csv Datei
       file = open("longtimelog.csv", "a")
@@ -185,6 +196,46 @@ def main():
 
       print("Upload erfolgreich")
 
+      print("Start MQTT Transfer")
+
+      time.sleep(2)
+
+	########## MQTT Transfer ###########
+      def on_connect(client, userdata, flags, rc):
+         if rc==0:
+           client.connected_flag=True #set flag
+           print("connected OK")
+         else:
+           print("Bad connection Returned code=",rc)
+
+      mqtt.Client.connected_flag=False#create flag in class
+      client = mqtt.Client("Oeltank")             #create new instance 
+      client.username_pw_set(username=mqttuser, password=mqttpw)   # set username/password
+      client.on_connect=on_connect  #bind call back function
+      client.loop_start()
+      print("Connecting to broker ",broker, brokerport)
+      client.connect(broker ,brokerport)      #connect to broker
+      while not client.connected_flag: #wait in loop
+          print("In wait loop")
+          time.sleep(1)
+      print("in Main Loop")
+
+      print("Subscribing to topic","mqtt.0/Oeltank/Oelstand")
+      client.subscribe("mqtt.0/Oeltank/Oelstand")
+      print("Publishing message to topic","mqtt.0/Oeltank/Oelstand")
+      client.publish("mqtt.0/Oeltank/Oelstand", Liter)
+      time.sleep(.1)
+      print("Subscribing to topic","mqtt.0/Oeltank/Datum")
+      client.subscribe("mqtt.0/Oeltank/Datum")
+      print("Publishing message to topic","mqtt.0/Oeltank/Datum")
+      client.publish("mqtt.0/Oeltank/Datum", Datum)
+      client.loop_stop()    #Stop loop 
+      client.disconnect() # disconnect
+
+      time.sleep(1)
+	
+	
+	
   # reset GPIO settings if user pressed Ctrl+C
   except KeyboardInterrupt:
     print("Measurement stopped by user")
