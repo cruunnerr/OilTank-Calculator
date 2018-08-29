@@ -5,7 +5,7 @@
 
 Made for Raspbian!
 
-Measures remaining litres, writes this to a logfile.csv and add results to a MySQL Database.
+Measures remaining litres, writes this to a logfile.csv and add results to a MySQL Database and MQTT-Broker.
 
 From that on, the node app.js will catch the values from the Database and creates a JSON file. This file will be uploaded to a NAS.
 
